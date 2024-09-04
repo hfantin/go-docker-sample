@@ -1,0 +1,6 @@
+build.sh
+.git
+.gitignore
+tests/
+*.txt
+Makefile
