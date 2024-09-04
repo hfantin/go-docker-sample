@@ -16,7 +16,7 @@ COPY *.go ./
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o go-docker-sample
 
-FROM distroless/static-debian11:latest
+FROM scratch
 
 WORKDIR /app
 
