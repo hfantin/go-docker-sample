@@ -1,6 +1,6 @@
-version: "3.7"
+version: "3.9"
 services:
-  srm:
+  sample:
     image: go-docker-sample:latest
     container_name: go-docker-sample
     hostname: go-docker-sample

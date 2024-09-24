@@ -1,20 +1,22 @@
-FROM golang:1.23.0-bullseye as base
+FROM golang:1.23.0-bullseye AS base
 
-RUN adduser \
-  --disabled-password \
-  --gecos "" \
-  --home "/nonexistent" \
-  --shell "/sbin/nologin" \
-  --no-create-home \
-  --uid 65532 \
-  hfantin
+#RUN adduser \
+#  --disabled-password \
+#  --gecos "" \
+#  --home "/nonexistent" \
+#  --shell "/sbin/nologin" \
+#  --no-create-home \
+#  --uid 65532 \
+#  hfantin
 
 WORKDIR /app
 
 COPY go.mod ./
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o go-docker-sample
+RUN go mod tidy \
+&& go get -u \
+&& CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o go-docker-sample
 
 FROM scratch
 
